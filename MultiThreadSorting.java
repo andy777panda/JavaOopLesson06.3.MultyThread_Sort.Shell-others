@@ -3,11 +3,11 @@ package net.ukr.andy777;
 public class MultiThreadSorting {
 
 	// метод формування потоків, їх запуску (сортування частин) та отримання результату (складання відсортованих частин)
-	static void sort(int[] array, int threadNumber, int sortMethod) {
-		SingleThreadSorting[] threadarray = new SingleThreadSorting[threadNumber];
+	static void sort(int[] array, int qThreads, int sortMethod) {
+		SingleThreadSorting[] threadarray = new SingleThreadSorting[qThreads];
 		// поділ масиву на частини + формування потоків з кожної частини та їх запуск (в конструкторі потоку)
 		for (int i = 0; i < threadarray.length; i++) {
-			int size = array.length / threadNumber;
+			int size = array.length / qThreads;
 			int begin = size * i;
 			int end = ((i + 1) * size);
 			if ((array.length - end) < size || i == (threadarray.length - 1)) {

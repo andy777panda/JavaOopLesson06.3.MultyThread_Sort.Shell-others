@@ -3,13 +3,14 @@ package net.ukr.andy777;
 /*
  Lesson06.3
  Напишите многопоточный вариант сортировки массива методом Шелла.
- P.S. додано вибір з кількох варіантів сортування (0-Bubble, 1-Insert, 2-Shell, 3-Shell2). кількість потоків задається. 
+ P.S. реалізовано вибір з кількох варіантів сортування (0-Bubble, 1-Insert, 2-Shell, 3-Shell2). кількість потоків задається. 
  */
 
 import java.util.Arrays;
 
 public class Main {
 
+	// реалізовані методи сортування
 	static String[] sortMethods = { "Bubble", "Insert", "Shell", "Shell2" };
 
 	public static void main(String[] args) {
@@ -21,11 +22,14 @@ public class Main {
 		int[] array1 = resSystemSort(array.clone());
 
 		// запуск кількох циклів сортувань різними method-методами та різною кількістю threads-потоків
-		for (int method = 0; method <= 3; method++) // номер методу. наразі - від 0 до 3
-			for (int threads = 1; threads <= 4; threads++) // кількість потоків
+		for (int method = 0; method <= 3; method++)
+			// номер методу. наразі - від 0 до 3
+			for (int threads = 1; threads <= 4; threads++)
+				// кількість потоків
 				resMultiThreadSort(array.clone(), threads, method, array1);
 	}
 
+	// метод запуску сортування системним методом + підрахунок часу виконання
 	public static int[] resSystemSort(int array[]) {
 		long tstart = System.currentTimeMillis();
 		Arrays.sort(array);
@@ -35,6 +39,8 @@ public class Main {
 		return array;
 	}
 
+	// метод запуску сортування заданим method-методом та заданою кількістю threads-потоків array-массиву + підрахунок
+	// часу виконання
 	public static void resMultiThreadSort(int array[], int qThreads, int sortMethod, int arrTrue[]) {
 		long tstart = System.currentTimeMillis();
 		MultiThreadSorting.sort(array, qThreads, sortMethod);
